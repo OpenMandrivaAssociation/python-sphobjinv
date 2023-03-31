@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        2.0.1
-Release:        1
+Release:        2
 Summary:        Sphinx objects.inv Inspection/Manipulation Tool
 Group:          Development/Python
 License:        MIT License
