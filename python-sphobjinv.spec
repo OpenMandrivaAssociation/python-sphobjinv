@@ -1,37 +1,50 @@
-# Created by pyp2rpm-3.3.5
-%global pypi_name sphobjinv
+%global module sphobjinv
 
-Name:           python-%{pypi_name}
-Version:        2.0.1
-Release:        2
-Summary:        Sphinx objects.inv Inspection/Manipulation Tool
-Group:          Development/Python
-License:        MIT License
-URL:            https://github.com/bskinn/sphobjinv
-Source0:        %{pypi_name}-%{version}.tar.gz
-BuildArch:      noarch
+Name:		python-%{module}
+Version:	2.3.1.2
+Release:	1
+Summary:	Toolkit to manipulate and inspect Sphinx objects.inv files
+Group:		Development/Python
+License:	MIT
+URL:		https://github.com/bskinn/sphobjinv
+Source0:	https://files.pythonhosted.org/packages/source/o/%{module}/%{module}-%{version}.tar.gz
+BuildArch:	noarch
 
-BuildRequires:  python3-devel
-BuildRequires:  python3dist(setuptools)
+BuildRequires:	python
+BuildRequires:	pkgconfig(python3)
+BuildRequires:	python-fuzzywuzzy
+BuildRequires:	python-pytest
+BuildRequires:	python-setuptools
+BuildRequires:	python-wheel
+
+Requires:	python-attrs
+Requires:	python-certifi
+Requires:	python-jsonschema
 
 %description
-sphobjinv: Manipulate and inspect Sphinx objects.inv files **Current
-Development Version:** **Most Recent Stable Release:** .. image::
+Toolkit for manipulation and inspection of Sphinx objects.inv files
 
+
+######################################
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -n %{module}-%{version}
 # Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
+rm -rf %{module}.egg-info
+# Remove shebangs
+sed -i '1{/^#!/d}' src/sphobjinv/_vendored/fuzzywuzzy/*.py
 
+######################################
 %build
 %py3_build
 
+######################################
 %install
 %py3_install
 
-%files -n python-%{pypi_name}
-%license LICENSE.txt
-%doc README.rst
+######################################
+%files -n python-%{module}
 %{_bindir}/sphobjinv
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
+%{py_sitedir}/%{module}
+%{py_sitedir}/%{module}-%{version}*.dist-info
+%doc README.md
+%license LICENSE.txt
