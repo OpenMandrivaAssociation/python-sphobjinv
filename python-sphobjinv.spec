@@ -2,7 +2,7 @@
 
 Name:		python-sphobjinv
 Version:	2.4
-Release:	1
+Release:	2
 Summary:	Toolkit to manipulate and inspect Sphinx objects.inv files
 Group:		Development/Python
 License:	MIT
@@ -11,7 +11,7 @@ Source0:	%{URL}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildSystem:	python
 BuildArch:	noarch
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(pytest)
 BuildRequires:	python%{pyver}dist(setuptools)
